@@ -1,0 +1,103 @@
+{
+    "height": "371",
+    "txhash": "08013A2329D99275D7CBA27AAAB55793BDEB1D0C04C7BEDEE16C04FC6FA16329",
+    "codespace": "wasm",
+    "code": 4,
+    "data": "",
+    "raw_log": "failed to execute message; message index: 0: Error parsing into type sm01::CounterInitMsg: unknown variant `Zero`, expected `zero` or `set`: instantiate wasm contract failed",
+    "logs": [],
+    "info": "",
+    "gas_wanted": "1000000",
+    "gas_used": "137228",
+    "tx": {
+        "@type": "/cosmos.tx.v1beta1.Tx",
+        "body": {
+            "messages": [
+                {
+                    "@type": "/cosmwasm.wasm.v1.MsgInstantiateContract",
+                    "sender": "wasm1a7y0zuc5zrhvfjrzrdt8kcep8h2pnkx5zkk6wt",
+                    "admin": "wasm1a7y0zuc5zrhvfjrzrdt8kcep8h2pnkx5zkk6wt",
+                    "code_id": "1",
+                    "label": "local0.1.0",
+                    "msg": {
+                        "Zero": ""
+                    },
+                    "funds": [
+                        {
+                            "denom": "stake",
+                            "amount": "100"
+                        }
+                    ]
+                }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+        },
+        "auth_info": {
+            "signer_infos": [
+                {
+                    "public_key": {
+                        "@type": "/cosmos.crypto.secp256k1.PubKey",
+                        "key": "A9iMOCDvUFbTEzUqjZ7ygg2GYpVdHWwMrgBcW4nSgpt+"
+                    },
+                    "mode_info": {
+                        "single": {
+                            "mode": "SIGN_MODE_DIRECT"
+                        }
+                    },
+                    "sequence": "6"
+                }
+            ],
+            "fee": {
+                "amount": [],
+                "gas_limit": "1000000",
+                "payer": "",
+                "granter": ""
+            },
+            "tip": null
+        },
+        "signatures": [
+            "54YnZ4/EidEQu+UWZInNl1IRO11af73nzZ2hp1SlwgQSuTV1/9dT35Tf2aw9Rx2W9dpmBIUmXxlRlC4dIfyvjA=="
+        ]
+    },
+    "timestamp": "2025-05-25T22:28:50Z",
+    "events": [
+        {
+            "type": "tx",
+            "attributes": [
+                {
+                    "key": "fee",
+                    "value": "",
+                    "index": true
+                },
+                {
+                    "key": "fee_payer",
+                    "value": "wasm1a7y0zuc5zrhvfjrzrdt8kcep8h2pnkx5zkk6wt",
+                    "index": true
+                }
+            ]
+        },
+        {
+            "type": "tx",
+            "attributes": [
+                {
+                    "key": "acc_seq",
+                    "value": "wasm1a7y0zuc5zrhvfjrzrdt8kcep8h2pnkx5zkk6wt/6",
+                    "index": true
+                }
+            ]
+        },
+        {
+            "type": "tx",
+            "attributes": [
+                {
+                    "key": "signature",
+                    "value": "54YnZ4/EidEQu+UWZInNl1IRO11af73nzZ2hp1SlwgQSuTV1/9dT35Tf2aw9Rx2W9dpmBIUmXxlRlC4dIfyvjA==",
+                    "index": true
+                }
+            ]
+        }
+    ]
+}

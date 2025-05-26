@@ -83,3 +83,80 @@ that have been published.
 Please replace this README file with information about your specific project. You can keep
 the `Developing.md` and `Publishing.md` files as useful references, but please set some
 proper description in the README.
+
+
+Attention pour utiliser le noeus cosmowasm, il faut rust 1.81
+rustup default 1.81
+
+Pour encoder le fichier
+cargo wasm
+
+attention à bien faire tourner source .profile
+
+pour integrer le contrat au réseau
+wasmd tx wasm store "./target/wasm32-unknown-unknown/release/sm01.wasm" \
+  --from alice \
+  --gas 2500000 \
+  -y \
+  --chain-id=docs-chain-1 \
+  -o json \
+  --keyring-backend=test
+
+
+Pour récupérer le code ID
+(mettre code de la transaction)
+wasmd q tx 1DB2A8F71AD446AE96543016E6BA3737A87BD6EB690BDCA8177A270AF610FB34 -o json
+
+A partir du CODE_ID dans events store_code
+wasmd q wasm code $CODE_ID downloaded_code.wasm
+
+
+# Retrieve the address of Alice's account
+ALICE_ADDR=$(wasmd keys show alice -a --keyring-backend=test)
+ 
+# Retrieve the address of Bob's account
+BOB_ADDR=$(wasmd keys show bob -a --keyring-backend=test)
+ 
+# Define init parameters for the contract
+INIT="\"zero\""
+
+
+wasmd tx wasm instantiate "$CODE_ID" "$INIT" \
+  --admin="$ALICE_ADDR" \
+  --from alice \
+  --amount="100stake" \
+  --label "local0.1.0" \
+  --gas 1000000 \
+  -y \
+  --chain-id=docs-chain-1 \
+  -o json \
+  --keyring-backend=test
+
+  récupérer adresse du contrat
+
+  wasmd query wasm list-contract-by-code "$CODE_ID" -o json
+
+  récupérer métadata contract
+  wasmd q wasm contract $CONTRACT -o json
+
+
+  MSG="\"inc\""
+  MSG="\"dec\""
+  MSG="\"set(5)\""      ça ne fonctionne pas
+
+  exécuter
+  wasmd tx wasm execute "$CONTRACT" "$MSG" \
+  --from alice \
+  --gas 1000000 \
+  -y \
+  --chain-id=docs-chain-1 \
+  -o json \
+  --keyring-backend=test
+
+
+  consulter
+  wasmd query wasm contract-state all "$CONTRACT" -o json
+
+  la valeur est dans models[0].value en base64
+
+  wasmd query wasm contract-state all "$CONTRACT" -o json | jq -r '.models[0].value' | base64 -d
